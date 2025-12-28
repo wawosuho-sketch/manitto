@@ -3,162 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2025 2학년부 마니또 피날레 (Mobile)</title>
+    <title>2025 2학년부 마니또: 우리들의 이야기</title>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gamja+Flower&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0f2027;
-            --bg-gradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            --bg-gradient: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
             --card-bg: rgba(255, 255, 255, 0.95);
             --text-main: #2c3e50;
-            --accent-red: #e74c3c;
-            --accent-green: #27ae60;
-            --accent-gold: #f1c40f;
+            --accent-red: #ff4757;
+            --accent-green: #2ed573;
+            --accent-gold: #ffa502;
+            --accent-blue: #1e90ff;
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background: var(--bg-gradient);
-            color: white;
-            font-family: 'Jua', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* 모바일 터치 스크롤 방지 */
-            touch-action: none; 
+            color: white; font-family: 'Jua', sans-serif;
+            overflow: hidden; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            touch-action: none;
         }
 
         /* ❄️ 눈 내리는 효과 */
         .snow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
             background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="1" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="0.8" fill="white" opacity="0.6"/><circle cx="80" cy="20" r="1.2" fill="white" opacity="0.9"/></svg>');
-            animation: snowFall 15s linear infinite;
+            animation: snowFall 20s linear infinite;
         }
-        @keyframes snowFall { from { background-position: 0 0; } to { background-position: 0 300px; } }
+        @keyframes snowFall { from { background-position: 0 0; } to { background-position: 0 500px; } }
 
-        /* 💡 크리스마스 전구 */
-        .lights {
-            position: fixed; top: 0; width: 100%; text-align: center; white-space: nowrap; z-index: 2;
-            padding-top: 10px;
-        }
-        .light {
-            display: inline-block; width: 15px; height: 15px; border-radius: 50%; margin: 0 8px;
-            animation: glow 1s infinite alternate;
-        }
-        .light:nth-child(odd) { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
-        .light:nth-child(even) { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); animation-delay: 0.5s; }
-        @keyframes glow { from { opacity: 0.5; transform: scale(0.9); } to { opacity: 1; transform: scale(1.1); } }
-
-        /* 슬라이드 레이아웃 */
+        /* 슬라이드 컨테이너 */
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transform: translateY(30px); transition: 0.6s ease-in-out; pointer-events: none; z-index: 1;
-            padding: 20px; box-sizing: border-box;
+            opacity: 0; transform: scale(0.95) translateY(30px); transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none; padding: 10px; box-sizing: border-box;
         }
-        .slide.active { opacity: 1; transform: translateY(0); pointer-events: all; z-index: 10; }
+        .slide.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; z-index: 10; }
 
-        /* 🎀 모바일 최적화 카드 스타일 */
+        /* 🎄 가렌드 */
+        .garland {
+            position: fixed; top: -10px; width: 100%; text-align: center; font-size: 2rem; z-index: 5;
+            text-shadow: 0 5px 10px rgba(0,0,0,0.5); opacity: 0.8;
+        }
+
+        /* 🃏 프로필 카드 */
         .story-card {
             background: var(--card-bg); color: var(--text-main);
-            width: 90%; max-width: 400px; /* 모바일 폭 제한 */
-            padding: 25px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: flex; flex-direction: column; /* 세로 배치 */
-            gap: 15px; align-items: center;
-            position: relative;
+            width: 95%; max-width: 800px; height: auto; max-height: 85vh;
+            border-radius: 20px; padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            display: flex; flex-direction: column; gap: 20px; align-items: center; position: relative;
             border: 4px solid var(--accent-gold);
-            max-height: 80vh; /* 화면 넘침 방지 */
-            overflow-y: auto; /* 내용 많으면 스크롤 */
+            overflow-y: auto;
         }
-        .ribbon {
-            position: absolute; top: -10px; right: -10px; width: 80px; height: 80px;
-            background: var(--accent-red); color: white;
-            display: flex; align-items: center; justify-content: center;
-            transform: rotate(45deg); font-family: 'Black Han Sans'; font-size: 1rem;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.3); border-radius: 50%;
-            z-index: 5;
+        @media (min-width: 768px) {
+            .story-card { flex-direction: row; padding: 40px; gap: 40px; overflow-y: visible; }
         }
 
-        .left-col { width: 100%; text-align: center; border-bottom: 2px dashed #ddd; padding-bottom: 15px; border-right: none;}
-        .right-col { width: 100%; text-align: left; padding-left: 0; }
-
-        .profile-icon { font-size: 4rem; margin-bottom: 5px; }
-        .name-tag { font-size: 2rem; font-family: 'Do Hyeon'; color: var(--text-main); margin: 0; }
-        .nick-tag { font-size: 1.1rem; color: #7f8c8d; margin-bottom: 10px; }
-        .role-badge { 
-            display: inline-block; padding: 5px 12px; border-radius: 20px; 
-            background: var(--accent-green); color: white; font-size: 0.9rem;
+        .role-stamp {
+            position: absolute; top: -10px; right: -10px;
+            background: var(--accent-red); color: white; padding: 8px 15px;
+            font-family: 'Black Han Sans'; font-size: 1rem; transform: rotate(10deg);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.3); border-radius: 10px; z-index: 5;
         }
+
+        .left-panel { width: 100%; text-align: center; border-bottom: 2px dashed #ccc; padding-bottom: 15px; }
+        .right-panel { width: 100%; }
+        @media (min-width: 768px) {
+            .left-panel { width: 35%; border-bottom: none; border-right: 2px dashed #ccc; padding-right: 30px; padding-bottom: 0; }
+            .right-panel { width: 65%; }
+        }
+
+        .avatar { font-size: 5rem; margin-bottom: 10px; animation: bounce 2s infinite; }
+        .name { font-size: 2.2rem; margin: 0; font-family: 'Do Hyeon'; }
+        .nick { font-size: 1.1rem; color: #7f8c8d; margin-bottom: 5px; }
 
         /* 비교 박스 */
-        .compare-box {
-            display: flex; align-items: center; justify-content: space-between; /* 간격 조정 */
-            background: #f1f2f6; padding: 15px; border-radius: 15px; margin-bottom: 15px;
-            width: 100%; box-sizing: border-box;
+        .match-box {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #f1f2f6; padding: 15px; border-radius: 15px; margin-bottom: 20px;
         }
-        .guess-box, .real-box { text-align: center; width: 42%; }
-        .box-title { font-size: 0.8rem; color: #7f8c8d; margin-bottom: 5px; }
-        .box-name { font-size: 1.4rem; font-family: 'Black Han Sans'; word-break: keep-all;}
-        .arrow-icon { font-size: 1.2rem; color: #bdc3c7; }
-        
-        .correct { color: var(--accent-green); }
-        .wrong { color: var(--accent-red); text-decoration: line-through; opacity: 0.6; }
-        .real-highlight { color: var(--accent-red); animation: heartbeat 1.5s infinite; }
+        .guess-side, .angel-side { text-align: center; width: 42%; }
+        .match-label { font-size: 0.9rem; color: #7f8c8d; margin-bottom: 5px; }
+        .match-name { font-size: 1.4rem; font-family: 'Black Han Sans'; word-break: keep-all; }
+        .correct-mark { color: var(--accent-green); font-weight: bold; }
+        .wrong-mark { color: var(--accent-red); text-decoration: line-through; opacity: 0.6; }
+        .real-angel { color: var(--accent-gold); animation: pulse 1.5s infinite; }
 
         /* 메모지 */
-        .memo-paper {
-            background: #fff3cd; padding: 15px; font-family: 'Nanum Pen Script'; font-size: 1.4rem;
-            transform: rotate(-1deg); box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-            position: relative; width: 100%; box-sizing: border-box;
-            line-height: 1.3;
+        .memo-note {
+            background: #fff3cd; padding: 15px; font-family: 'Nanum Pen Script'; font-size: 1.5rem;
+            transform: rotate(-1deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.15);
+            position: relative; line-height: 1.3; width: 100%; box-sizing: border-box;
         }
-        .pin {
-            position: absolute; top: -8px; left: 50%; width: 12px; height: 12px;
-            background: var(--accent-red); border-radius: 50%; box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        .tape {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 20px; background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.1);
         }
 
-        /* 관계도 (모바일용 축소) */
-        .circle-map {
-            width: 320px; height: 320px; position: relative; /* 크기 축소 */
-            border: 2px dotted rgba(255,255,255,0.3); border-radius: 50%;
-            margin-top: 20px;
+        /* 🏆 히든롤 결산 페이지 */
+        .role-grid { display: grid; grid-template-columns: 1fr; gap: 15px; width: 95%; max-width: 800px; }
+        @media (min-width: 768px) { .role-grid { grid-template-columns: 1fr 1fr; } }
+
+        .role-card {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px; border-radius: 15px; display: flex; align-items: center; gap: 15px;
+            backdrop-filter: blur(5px);
+        }
+        .role-badge-large { 
+            font-size: 2.5rem; background: white; width: 60px; height: 60px; min-width: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+        .role-info { text-align: left; flex: 1; }
+        .role-name { font-size: 1.2rem; color: var(--accent-gold); font-family: 'Black Han Sans'; }
+        .role-desc { font-size: 0.85rem; color: #ddd; margin-bottom: 5px; }
+        .role-result { font-size: 0.95rem; color: white; background: rgba(0,0,0,0.3); padding: 5px 8px; border-radius: 5px; display: inline-block;}
+        .success-stamp { color: var(--accent-green); border: 2px solid var(--accent-green); padding: 3px 8px; border-radius: 8px; transform: rotate(-5deg); font-weight: bold; font-size: 0.9rem; }
+        .fail-stamp { color: var(--accent-red); border: 2px solid var(--accent-red); padding: 3px 8px; border-radius: 8px; transform: rotate(5deg); font-weight: bold; font-size: 0.9rem; }
+
+        /* ★ [개선됨] 관계도 스타일 (SVG 활용) */
+        .circle-container {
+            width: 340px; height: 340px; position: relative; margin-top: 20px;
         }
         .node {
-            position: absolute; width: 60px; height: 60px; background: white; color: #333;
+            position: absolute; width: 65px; height: 65px; 
+            background: white; color: #333;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 0.8rem; box-shadow: 0 0 10px var(--accent-gold);
-            font-family: 'Do Hyeon';
+            font-size: 0.9rem; box-shadow: 0 0 15px var(--accent-gold); 
+            font-family: 'Do Hyeon'; z-index: 2; border: 3px solid var(--accent-blue);
+            transition: transform 0.3s;
         }
-
-        /* 타이틀 반응형 */
-        h1.main-title { font-size: 3.5rem; text-align: center; margin-bottom: 20px; line-height: 1.2; }
-        h2.sub-title { font-size: 1.8rem; text-align: center; }
-
-        /* 통계 박스 */
-        .stat-container {
-            display: flex; flex-direction: column; gap: 15px; width: 90%;
+        .node.active { background: var(--accent-gold); color: white; transform: scale(1.2); z-index: 10; border-color: white;}
+        
+        /* 연결선 SVG */
+        .lines-svg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+            pointer-events: none;
         }
-        .stat-card {
-            background: white; color: #333; padding: 15px; border-radius: 15px; 
-            text-align: center; display: flex; align-items: center; justify-content: flex-start; gap: 15px;
+        .arrow-line {
+            stroke: rgba(255, 255, 255, 0.2); 
+            stroke-width: 2; fill: none;
+            stroke-dasharray: 10;
         }
-        .stat-icon { font-size: 2.5rem; width: 50px;}
-        .stat-text { text-align: left; }
-        .stat-title { font-size: 0.9rem; color: #7f8c8d; }
-        .stat-val { font-size: 1.2rem; font-weight: bold; }
+        .arrow-line.active {
+            stroke: var(--accent-green); 
+            stroke-width: 4;
+            stroke-dasharray: none;
+            filter: drop-shadow(0 0 5px var(--accent-green));
+            animation: drawLine 0.5s forwards;
+        }
+        @keyframes drawLine { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
 
-        @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        /* 타이틀 */
+        h1.main-title { font-family: 'Black Han Sans'; font-size: 3rem; color: var(--accent-gold); text-shadow: 2px 2px 0 #000; margin-bottom: 20px; text-align: center; line-height: 1.2; }
+        h2.sub-title { font-family: 'Gamja Flower'; font-size: 1.5rem; color: #ddd; text-align: center; margin-bottom: 10px;}
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         .nav-help { 
             position: fixed; bottom: 20px; width: 100%; text-align: center; 
-            font-size: 0.9rem; opacity: 0.8; color: var(--accent-gold);
-            animation: blink 2s infinite; z-index: 20;
+            font-size: 0.9rem; opacity: 0.7; color: #fff;
+            animation: blink 2s infinite; z-index: 20; text-shadow: 1px 1px 2px #000;
         }
         @keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
@@ -166,170 +176,202 @@
 </head>
 <body>
     <div class="snow"></div>
-    <div class="lights">
-        <span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span>
-        <span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span>
-    </div>
+    <div class="garland">🎄✨🎁🎄✨🎁🎄✨🎁</div>
 
     <div id="deck"></div>
 
-    <div class="nav-help" id="navHelp">화면을 터치하거나 밀어서 넘기세요 ➡</div>
+    <div class="nav-help">화면을 터치하거나 밀어서 넘기세요 ➡</div>
 
     <script>
         // --------------------------------------------------------------------------------
-        // 데이터 정의
+        // [데이터] 11명 전원 검증 완료 (V7)
         // --------------------------------------------------------------------------------
         const teachers = [
             {
-                title: "명탐정 산타 🎅",
+                title: "명탐정 보안관 🎅",
                 name: "최선혜", nick: "화이트크리스마스", icon: "⛄", role: "보안관",
-                target: "홍은숙", 
-                realAngel: "김연욱", guess: "김연욱", correct: true,
-                memo: "12.17 모니터 테두리에 칭찬 포스트잇 2장 부착! (완벽 수행)"
+                target: "홍은숙", realAngel: "김연욱", 
+                guess: "김연욱", correct: true, // ⭕ 정답
+                memo: "12.17 모니터 테두리에 칭찬 포스트잇 2장 부착! (완벽 수행)",
+                story: "본인을 챙겨준 김연욱 쌤을 정확히 맞춰낸 명탐정!"
             },
             {
                 title: "조선왕조 실록왕 📜",
                 name: "홍은숙", nick: "둠칫 둠칫", icon: "💃", role: "자퇴호소인",
-                target: "신효진", 
-                realAngel: "최선혜", guess: "최선혜", correct: true,
-                memo: "19일 파란 원피스 칭찬, 18일 귤/약과 투척 (날짜까지 기록)"
+                target: "신효진", realAngel: "최선혜", 
+                guess: "최선혜", correct: true, // ⭕ 정답
+                memo: "19일 파란 원피스 칭찬, 18일 귤/약과 투척 (날짜까지 기록)",
+                story: "나노 단위 기록 정신! 정답도 깔끔하게 맞추셨습니다."
             },
             {
-                title: "로켓배송 하이파이브 ⚡",
+                title: "로켓배송 산타 ⚡",
                 name: "신효진", nick: "원더", icon: "🚀", role: "X맨",
-                target: "박재상", 
-                realAngel: "홍은숙", guess: "홍은숙", correct: true,
-                memo: "오예 모두 완료! (복도에서 비장한 표정으로 하이파이브 ✋)"
+                target: "박재상", realAngel: "홍은숙", 
+                guess: "홍은숙", correct: true, // ⭕ 정답
+                memo: "오예 모두 완료! (12.22 비장한 표정으로 하이파이브 ✋)",
+                story: "시작하자마자 미션 올 클리어! 정체도 바로 맞춘 능력자."
             },
             {
-                title: "비운의 윙크남 😉",
+                title: "비운의 짝사랑 💔",
                 name: "박재상", nick: "호머심슨", icon: "🍩", role: "전교회장",
-                target: "김수호", 
-                realAngel: "신효진", guess: "", correct: false,
-                memo: "Doh! (점심 때 윙크 날리고 모른 척하기... 수호쌤 못 봄 ㅠ)"
+                target: "김수호", realAngel: "신효진", 
+                guess: "김수호", correct: false, // ❌ 오답
+                memo: "Doh! (17일 점심 윙크 날리고 모른 척하기... 수호쌤 못 봄 ㅠ)",
+                story: "윙크까지 날렸는데... 본인이 챙겨주는 수호쌤을 천사로 착각!"
             },
             {
                 title: "바보야... 😎",
                 name: "김수호", nick: "카리나", icon: "🎸", role: "얌체",
-                target: "곽민정", 
-                realAngel: "박재상", guess: "황혜조", correct: false,
-                memo: "상태메시지: '바보야' / 재상쌤 윙크 못 보고 엉뚱한 분 의심..."
+                target: "곽민정", realAngel: "박재상", 
+                guess: "황혜조", correct: false, // ❌ 오답
+                memo: "상태메시지: '바보야' / 손가락 하트 완료",
+                story: "재상쌤의 윙크를 못 보고, 엉뚱한 혜조쌤을 의심한 당신은..."
             },
             {
-                title: "탕수육 외침 🥟",
+                title: "탕수육의 외침 🥟",
                 name: "곽민정", nick: "2학년포애버", icon: "🥰", role: "깐부",
-                target: "성미옥", 
-                realAngel: "김수호", guess: "최경아", correct: false,
-                memo: "탕수육 먹을 때 하이파이브! (제발 인정 좀 해주세요 ㅠ)"
+                target: "성미옥", realAngel: "김수호", 
+                guess: "최경아", correct: false, // ❌ 오답
+                memo: "12.23 탕수육 먹을 때 하이파이브 (제발 인정 좀 해주세요 ㅠ)",
+                story: "탕수육 먹을 때의 그 간절함! 하지만 천사는 바로 옆에 있었습니다."
             },
             {
-                title: "신비주의 MZ 🦄",
+                title: "은밀한 고수 🦄",
                 name: "성미옥", nick: "Gen Z, yen Z?", icon: "✨", role: "킬러문항",
-                target: "황혜조", 
-                realAngel: "곽민정", guess: "", correct: false,
-                memo: "아직 미션을 완료하지 못하셨군요... (은밀하게 진행 중)"
+                target: "황혜조", realAngel: "곽민정", 
+                guess: "곽민정", correct: true, // ⭕ 정답
+                memo: "아직 미션을 완료하지 못하셨군요... (은밀하게 진행 중)",
+                story: "MZ세대 닉네임의 주인공! 조용히 정답을 맞춘 실력자."
             },
             {
-                title: "메소드 연기 대상 🎬",
+                title: "메소드 연기상 🎬",
                 name: "황혜조", nick: "사슴코", icon: "🦌", role: "보안관",
-                target: "최경아", 
-                realAngel: "성미옥", guess: "박재상", correct: false,
-                memo: "마니또가 '제가요?'라고 해서 바로 말투 따라해봄 (소름)"
+                target: "최경아", realAngel: "성미옥", 
+                guess: "박재상", correct: false, // ❌ 오답
+                memo: "마니또가 '제가요?'라고 해서 바로 말투 따라해봄 (소름)",
+                story: "단톡방 말투까지 복사하는 치밀함! 하지만 미옥쌤인 줄은 몰랐음."
             },
             {
-                title: "춤추는 명탐정 👮‍♀️",
+                title: "정의의 사도 👮‍♀️",
                 name: "최경아", nick: "메리", icon: "🔦", role: "생활지도부장",
-                target: "노은휘", 
-                realAngel: "황혜조", guess: "박재상", correct: false,
-                memo: "덕분에 둠칫둠칫! / 18일 수수께끼 포스트잇 부착 완료"
+                target: "노은휘", realAngel: "황혜조", 
+                guess: "박재상", correct: false, // ❌ 오답
+                sheriffGuess: "김연욱", // X맨 검거 성공!
+                memo: "덕분에 둠칫둠칫! / 18일 수수께끼 포스트잇 부착",
+                story: "마니또는 틀렸지만, X맨(김연욱)을 검거하여 학교를 구했습니다!"
             },
             {
                 title: "달콤한 유혹 🍫",
                 name: "노은휘", nick: "넌나만바라봐", icon: "👀", role: "깐부",
-                target: "김연욱", 
-                realAngel: "최경아", guess: "최경아", correct: true,
-                memo: "19일 초콜릿 몰래 투척 / 걷는 걸음걸이 3초 따라하기 (성공!)"
+                target: "김연욱", realAngel: "최경아", 
+                guess: "최경아", correct: true, // ⭕ 정답
+                memo: "19일 초콜릿 몰래 투척 / 걷는 걸음걸이 3초 따라하기",
+                story: "달콤한 간식과 함께 경아쌤을 정확히 맞춘 눈치 백단!"
             },
             {
                 title: "상큼한 비타민 🌿",
                 name: "김연욱", nick: "마니또아님", icon: "💊", role: "X맨",
-                target: "최선혜", 
-                realAngel: "노은휘", guess: "", correct: false,
-                memo: "안녕하세요 / 비타민C와 홍삼스틱으로 건강 챙기기!"
+                target: "최선혜", realAngel: "노은휘", 
+                guess: "노은휘", correct: true, // ⭕ 정답
+                memo: "안녕하세요 / 4. 비타민C, 홍삼스틱 전달 예정",
+                story: "정답은 맞췄지만... 최경아 보안관에게 꼬리를 잡혔습니다."
             }
         ];
 
         // --------------------------------------------------------------------------------
-        // 슬라이드 생성
+        // 2. 히든 롤 결과 계산 로직 (자동 계산)
+        // --------------------------------------------------------------------------------
+        const voteCounts = {};
+        teachers.forEach(t => {
+            if(t.guess) voteCounts[t.guess] = (voteCounts[t.guess] || 0) + 1;
+        });
+
+        let totalCorrect = 0;
+        teachers.forEach(t => { if(t.correct) totalCorrect++; }); // 총 6명
+
+        const roleData = {
+            "전교회장": { player: "박재상", res: `득표: ${voteCounts["박재상"]||0}표`, success: (voteCounts["박재상"]||0) >= 2 },
+            "자퇴호소인": { player: "홍은숙", res: `득표: ${voteCounts["홍은숙"]||0}표`, success: (voteCounts["홍은숙"]||0) === 0 },
+            "얌체": { player: "김수호", res: "본인 추리 실패", success: false },
+            "킬러문항": { player: "성미옥", res: "타겟(황혜조) 오답", success: true },
+            "깐부1": { player: "곽민정", res: "타겟(성미옥) 정답", success: true },
+            "깐부2": { player: "노은휘", res: "타겟(김연욱) 정답", success: true },
+            "X맨": { player: "신효진, 김연욱, 최경아", res: `정답 ${totalCorrect}명`, success: totalCorrect <= 4 },
+            "보안관": { player: "최경아 (대표)", res: "X맨 검거", success: true }
+        };
+
+        // --------------------------------------------------------------------------------
+        // 3. 슬라이드 생성
         // --------------------------------------------------------------------------------
         const deck = document.getElementById('deck');
         let html = '';
 
-        // [Slide 1] 오프닝
+        // [Page 1] 오프닝
         html += `
             <div class="slide active">
-                <h2 class="sub-title" style="color:#ddd;">2025 2학년부 마니또</h2>
-                <h1 class="main-title" style="color:var(--accent-gold);">
+                <h2 class="sub-title" style="color:#ddd; margin-bottom:10px;">2025 2학년부 마니또</h2>
+                <h1 class="main-title" style="color:var(--accent-gold); text-shadow:3px 3px 0 #000; margin:0; text-align:center;">
                     우리가 서로의<br>산타였다 🎅
                 </h1>
-                <p style="margin-top:20px; font-size:1.2rem; color:#fff;">11명의 선생님, 따뜻한 기록</p>
+                <p style="margin-top:20px; font-size:1.2rem; color:#fff;">11명의 선생님, 14일간의 기록</p>
             </div>
         `;
 
-        // [Slide 2] 전체 관계도 (모바일 최적화)
+        // [Page 2] 전체 관계도 (직관적 화살표 추가)
         html += `
             <div class="slide">
-                <h1 style="font-family:'Jua'; font-size:2.5rem; margin-bottom:20px;">💞 사랑의 연결고리</h1>
-                <div class="circle-map" id="circleMap">
-                    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
-                        <div style="font-size:3rem;">🎁</div>
-                        <div style="font-size:1rem;">끊김 없는<br>완벽한 순환</div>
+                <h1 style="font-family:'Jua'; font-size:2.5rem; margin-bottom:20px; color:var(--accent-gold);">💞 사랑의 연결고리</h1>
+                <div class="circle-container" id="circleMap">
+                    <svg class="lines-svg" id="linesSvg"></svg>
+                    <!-- Nodes added by JS -->
+                    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; color:white;">
+                        <div style="font-size:2.5rem;">🎁</div>
+                        <div style="font-size:0.8rem;">끊김 없는 순환</div>
                     </div>
                 </div>
+                <div style="margin-top:15px; font-size:0.9rem; color:#ccc;">(자동으로 연결 순서가 나타납니다)</div>
             </div>
         `;
 
-        // [Slide 3 ~ 13] 개인별 스토리
+        // [Page 3 ~ 13] 개별 스토리
         teachers.forEach((t, i) => {
             const guessDisplay = t.guess ? t.guess : "❓";
-            const correctClass = t.correct ? "correct" : "wrong";
-            const resultIcon = t.correct ? "⭕ 정답" : "❌ 땡!";
-
+            const correctClass = t.correct ? "correct-mark" : "wrong-mark";
+            const resultIcon = t.correct ? "⭕ 정답!" : "❌ 땡!";
+            
             html += `
             <div class="slide">
-                <h2 style="font-family:'Gamja Flower'; font-size:1.8rem; margin-bottom:15px; color:#fff; text-align:center;">Story ${i+1}. ${t.title}</h2>
+                <h2 style="font-family:'Gamja Flower'; font-size:1.5rem; margin-bottom:10px; color:#fff;">Story ${i+1}. ${t.name} 쌤</h2>
                 <div class="story-card">
-                    <div class="ribbon">${t.name}</div>
+                    <div class="role-stamp">${t.role}</div>
                     
-                    <div class="left-col">
-                        <div class="profile-icon">${t.icon}</div>
-                        <h2 class="name-tag">${t.name}</h2>
-                        <div class="nick-tag">"${t.nick}"</div>
-                        <span class="role-badge">${t.role}</span>
+                    <div class="left-panel">
+                        <div class="avatar">${t.icon}</div>
+                        <h2 class="name">${t.name}</h2>
+                        <div class="nick">"${t.nick}"</div>
                     </div>
                     
-                    <div class="right-col">
+                    <div class="right-panel">
                         <div style="margin-bottom:10px; font-size:1rem; color:#7f8c8d;">내가 챙겨준 사람: <strong style="color:var(--text-main)">${t.target}</strong></div>
                         
-                        <!-- 비교 박스 -->
-                        <div class="compare-box">
-                            <div class="guess-box">
-                                <div class="box-title">나의 추측</div>
-                                <div class="box-name ${correctClass}">${guessDisplay}</div>
+                        <div class="match-box">
+                            <div class="guess-side">
+                                <div class="match-label">나의 추측</div>
+                                <div class="match-name ${correctClass}">${guessDisplay}</div>
                                 <div style="font-size:0.8rem; margin-top:3px;">${resultIcon}</div>
                             </div>
                             <div class="arrow-icon"><i class="fas fa-angle-double-right"></i></div>
-                            <div class="real-box">
-                                <div class="box-title">진짜 천사</div>
-                                <div class="box-name real-highlight">${t.realAngel}</div>
+                            <div class="angel-side">
+                                <div class="match-label">진짜 천사</div>
+                                <div class="match-name real-angel">${t.realAngel}</div>
                                 <div style="font-size:0.8rem; margin-top:3px;">감사합니다!</div>
                             </div>
                         </div>
 
-                        <!-- 메모 -->
-                        <div class="memo-paper">
-                            <div class="pin"></div>
+                        <div class="memo-note">
+                            <div class="tape"></div>
                             "${t.memo}"
+                            <div style="margin-top:10px; font-size:0.85rem; color:#555;">- ${t.story}</div>
                         </div>
                     </div>
                 </div>
@@ -337,81 +379,91 @@
             `;
         });
 
-        // [Slide 14] 재미있는 통계 (모바일용 세로 배치)
+        // [Page 14] 히든 롤 결산 1
+        html += `
+            <div class="slide">
+                <h1 style="font-family:'Black Han Sans'; font-size:2.5rem; margin-bottom:20px;">🎭 히든 롤 결산 (개인)</h1>
+                <div class="role-grid">
+                    ${['전교회장', '킬러문항', '깐부1', '깐부2', '자퇴호소인', '얌체'].map(key => {
+                        const r = roleData[key];
+                        const roleTitle = key.replace(/\d/g, ''); // 깐부1 -> 깐부
+                        return `
+                        <div class="role-card">
+                            <div class="role-info">
+                                <div class="role-name">${roleTitle} (${r.player})</div>
+                                <div class="role-result">${r.res}</div>
+                            </div>
+                            <div class="${r.success ? 'success-stamp' : 'fail-stamp'}">${r.success ? '성공' : '실패'}</div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+
+        // [Page 15] 히든 롤 결산 2 (팀전)
+        html += `
+            <div class="slide">
+                <h1 style="font-family:'Black Han Sans'; font-size:2.5rem; margin-bottom:30px;">⚔️ 히든 롤 결산 (팀전)</h1>
+                <div class="story-card" style="display:block; text-align:center; min-height:auto;">
+                    <div style="display:flex; flex-direction:column; gap:20px;">
+                        
+                        <div style="background:#fff3f3; padding:15px; border-radius:15px; border:2px solid var(--accent-red);">
+                            <div class="role-name" style="color:var(--accent-red); font-size:1.5rem;">💣 X맨 (수업붕괴범)</div>
+                            <div style="color:#555; margin:5px 0;">신효진, 김연욱, 최경아</div>
+                            <div class="role-result" style="background:#eee; color:#333; padding:5px; border-radius:5px;">정답자 ${totalCorrect}명 발생 (조건: 4명 이하)</div>
+                            <div style="margin-top:10px;" class="fail-stamp">작전 실패</div>
+                        </div>
+
+                        <div style="font-size:2rem; font-weight:bold; color:#ddd;">VS</div>
+
+                        <div style="background:#f3fff3; padding:15px; border-radius:15px; border:2px solid var(--accent-green);">
+                            <div class="role-name" style="color:var(--accent-green); font-size:1.5rem;">👮‍♀️ 생활지도부장</div>
+                            <div style="color:#555; margin:5px 0;">최경아 (대표 검거)</div>
+                            <div class="role-result" style="background:#eee; color:#333; padding:5px; border-radius:5px;">X맨(김연욱) 검거 성공</div>
+                            <div style="margin-top:10px;" class="success-stamp">정의 구현</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // [Page 16] 통계
         html += `
             <div class="slide">
                 <h1 style="font-family:'Black Han Sans'; font-size:3rem; color:var(--accent-gold); margin-bottom:30px;">📊 2학년부 TMI</h1>
-                <div class="stat-container">
-                    <div class="stat-card">
-                        <div class="stat-icon">☕</div>
+                <div class="role-grid" style="grid-template-columns: 1fr; gap:15px; width:90%;">
+                    <div class="role-card" style="justify-content:center;">
+                        <div class="stat-icon" style="font-size:2rem;">☕</div>
                         <div class="stat-text">
                             <div class="stat-title">최애 선물 1위</div>
-                            <div class="stat-val">따뜻한 커피 & 티백</div>
+                            <div class="stat-val" style="font-size:1.5rem; font-weight:bold;">따뜻한 커피 & 티백</div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🍊</div>
+                    <div class="role-card" style="justify-content:center;">
+                        <div class="stat-icon" style="font-size:2rem;">🍊</div>
                         <div class="stat-text">
                             <div class="stat-title">최다 등장 간식</div>
-                            <div class="stat-val">제주 감귤 & 탕수육(?)</div>
+                            <div class="stat-val" style="font-size:1.5rem; font-weight:bold;">제주 감귤 & 탕수육</div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🕵️‍♀️</div>
+                    <div class="role-card" style="justify-content:center;">
+                        <div class="stat-icon" style="font-size:2rem;">📈</div>
                         <div class="stat-text">
                             <div class="stat-title">마니또 정답률</div>
-                            <div class="stat-val" style="color:var(--accent-green);">36.3% (4명 성공)</div>
+                            <div class="stat-val" style="color:var(--accent-green); font-size:1.5rem; font-weight:bold;">54.5% (6명 성공)</div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
 
-        // [Slide 15] 히든 미션 결과 (X맨)
+        // [Page 17] 엔딩
         html += `
             <div class="slide">
-                <h1 style="font-family:'Black Han Sans'; font-size:2.8rem; line-height:1.2;">🕵️‍♀️ 히든 스토리<br><span style="color:var(--accent-red)">X맨의 승리?</span></h1>
-                <div style="background:rgba(255,255,255,0.1); padding:30px; border-radius:20px; margin-top:20px; text-align:center; width:90%;">
-                    <h2 style="color:var(--accent-red); margin-bottom:15px; font-size:1.5rem;">💣 수업 붕괴범 팀</h2>
-                    <p style="font-size:1.2rem;">신효진, 김연욱, 최경아</p>
-                    <hr style="border:1px dashed rgba(255,255,255,0.3); margin:15px 0;">
-                    <p style="font-size:1.1rem;">
-                        목표: "정답자 4명 이하"<br>
-                        결과: 정답자 딱 <strong>4명!</strong>
-                    </p>
-                    <div style="font-size:1.8rem; color:var(--accent-gold); margin-top:20px; font-weight:bold;">🎉 미션 대성공!</div>
-                </div>
-            </div>
-        `;
-
-        // [Slide 16] 히든 미션 결과 (보안관)
-        html += `
-            <div class="slide">
-                <h1 style="font-family:'Black Han Sans'; font-size:2.8rem; line-height:1.2;">👮‍♀️ 히든 스토리<br><span style="color:var(--accent-green)">영웅의 탄생</span></h1>
-                <div style="background:rgba(255,255,255,0.1); padding:30px; border-radius:20px; margin-top:20px; text-align:center; width:90%;">
-                    <h2 style="color:var(--accent-green); margin-bottom:15px; font-size:1.5rem;">생활지도부장 팀</h2>
-                    <p style="font-size:1.2rem;">최선혜, 황혜조, 최경아</p>
-                    <hr style="border:1px dashed rgba(255,255,255,0.3); margin:15px 0;">
-                    <p style="font-size:1.1rem;">
-                        어둠 속에 빛이 있었으니...<br>
-                        유일하게 범인(김연욱 쌤)을 검거!
-                    </p>
-                    <div style="margin-top:20px;">
-                        <span style="font-size:2rem; font-weight:bold; background:var(--accent-green); padding:10px 20px; border-radius:10px;">
-                            최경아 선생님
-                        </span>
-                    </div>
-                    <p style="margin-top:15px; font-size:1.2rem;">특별 공로상 수여합니다 👏👏</p>
-                </div>
-            </div>
-        `;
-
-        // [Slide 17] 엔딩
-        html += `
-            <div class="slide">
-                <div style="font-size:4rem; margin-bottom:20px;">🎄❤️</div>
-                <h1 style="font-family:'Black Han Sans'; font-size:3.5rem; color:var(--accent-gold);">Merry Christmas</h1>
-                <h2 style="font-family:'Do Hyeon'; font-size:1.5rem; margin-top:20px; line-height:1.6;">
+                <div style="font-size:5rem; margin-bottom:20px;">🎄❤️</div>
+                <h1 style="font-family:'Black Han Sans'; font-size:3rem; color:var(--accent-gold);">Merry Christmas</h1>
+                <h2 style="font-family:'Do Hyeon'; font-size:1.5rem; margin-top:20px; line-height:1.6; text-align:center;">
                     서로를 생각하는 마음이<br>
                     가장 큰 선물이었습니다.<br>
                     2025년 한 해, 정말 고생 많으셨습니다!
@@ -425,7 +477,7 @@
         deck.innerHTML = html;
 
         // --------------------------------------------------------------------------------
-        // 로직: 터치/클릭 슬라이드 & 원형 그래프
+        // 기능 로직
         // --------------------------------------------------------------------------------
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
@@ -433,60 +485,64 @@
         function showSlide(n) {
             slides.forEach(s => s.classList.remove('active'));
             slides[n].classList.add('active');
-            if (n === 1) drawCircle(); 
+            if (n === 1) setTimeout(drawCircle, 500); 
         }
 
-        function nextSlide() {
-            if (currentSlide < slides.length - 1) {
-                currentSlide++;
-                showSlide(currentSlide);
-            }
-        }
+        function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; showSlide(currentSlide); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; showSlide(currentSlide); } }
 
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                showSlide(currentSlide);
-            }
-        }
-
-        // 키보드 이벤트
         document.addEventListener('keydown', (e) => {
             if(e.key === "ArrowRight") nextSlide();
             if(e.key === "ArrowLeft") prevSlide();
         });
 
-        // 터치/클릭 이벤트 (화면 왼쪽/오른쪽 터치)
         document.addEventListener('click', (e) => {
-            const width = window.innerWidth;
-            if (e.clientX > width / 2) nextSlide();
+            if (e.clientX > window.innerWidth / 2) nextSlide();
             else prevSlide();
         });
 
-        // 원형 그래프
+        // 원형 그래프 + 화살표 애니메이션
         function drawCircle() {
             const container = document.getElementById('circleMap');
-            if(container.children.length > 1) return;
+            const svg = document.getElementById('linesSvg');
+            if(container.children.length > 2) return; // 이미 그렸으면 패스
 
             const names = ["최선혜", "홍은숙", "신효진", "박재상", "김수호", "곽민정", "성미옥", "황혜조", "최경아", "노은휘", "김연욱"];
-            const radius = 130; // 모바일용 축소
-            const cx = 160, cy = 160;
+            const radius = 135; 
+            const cx = 170, cy = 170;
 
             names.forEach((name, i) => {
                 const angle = (i / 11) * 2 * Math.PI - (Math.PI/2);
-                const x = cx + radius * Math.cos(angle) - 30;
-                const y = cy + radius * Math.sin(angle) - 30;
+                const x = cx + radius * Math.cos(angle) - 32;
+                const y = cy + radius * Math.sin(angle) - 32;
 
+                // 노드 생성
                 const node = document.createElement('div');
                 node.className = 'node';
                 node.style.left = x + 'px';
                 node.style.top = y + 'px';
                 node.innerHTML = `<strong>${name}</strong>`;
-                node.style.opacity = 0;
-                node.style.transition = `opacity 0.5s ease ${i*0.1}s`;
-                
-                setTimeout(() => { node.style.opacity = 1; }, 100);
                 container.appendChild(node);
+
+                // 화살표 그리기 (다음 사람에게)
+                const nextIndex = (i + 1) % 11;
+                const nextAngle = (nextIndex / 11) * 2 * Math.PI - (Math.PI/2);
+                const nx = cx + radius * Math.cos(nextAngle);
+                const ny = cy + radius * Math.sin(nextAngle);
+                const curX = cx + radius * Math.cos(angle);
+                const curY = cy + radius * Math.sin(angle);
+
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("x1", curX); line.setAttribute("y1", curY);
+                line.setAttribute("x2", nx); line.setAttribute("y2", ny);
+                line.setAttribute("class", "arrow-line");
+                svg.appendChild(line);
+
+                // 애니메이션
+                setTimeout(() => {
+                    node.classList.add('active');
+                    line.classList.add('active');
+                }, i * 800); // 0.8초 간격으로 순차 점등
             });
         }
     </script>
