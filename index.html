@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2025 2학년부 마니또: 우리들의 이야기</title>
+    <!-- 폰트 로드 -->
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gamja+Flower&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -39,14 +40,15 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             opacity: 0; transform: scale(0.95) translateY(30px); transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-            pointer-events: none; padding: 10px; box-sizing: border-box;
+            pointer-events: none; padding: 20px; box-sizing: border-box;
         }
         .slide.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; z-index: 10; }
 
-        /* 🎄 가렌드 */
+        /* 🎉 상단 장식 (새해 Ver) */
         .garland {
             position: fixed; top: -10px; width: 100%; text-align: center; font-size: 2rem; z-index: 5;
-            text-shadow: 0 5px 10px rgba(0,0,0,0.5); opacity: 0.8;
+            text-shadow: 0 5px 10px rgba(0,0,0,0.5); opacity: 0.9; font-family: 'Black Han Sans'; color: var(--accent-gold);
+            letter-spacing: 2px;
         }
 
         /* 🃏 프로필 카드 */
@@ -176,7 +178,7 @@
 </head>
 <body>
     <div class="snow"></div>
-    <div class="garland">🎄✨🎁🎄✨🎁🎄✨🎁</div>
+    <div class="garland">✨🌅 2026 Happy New Year 🌅✨</div>
 
     <div id="deck"></div>
 
@@ -191,7 +193,7 @@
                 title: "명탐정 보안관 🎅",
                 name: "최선혜", nick: "화이트크리스마스", icon: "⛄", role: "보안관",
                 target: "홍은숙", realAngel: "김연욱", 
-                guess: "김연욱", correct: true, // ⭕ 정답
+                guess: "김연욱", correct: true, 
                 memo: "12.17 모니터 테두리에 칭찬 포스트잇 2장 부착! (완벽 수행)",
                 story: "본인을 챙겨준 김연욱 쌤을 정확히 맞춰낸 명탐정!"
             },
@@ -199,7 +201,7 @@
                 title: "조선왕조 실록왕 📜",
                 name: "홍은숙", nick: "둠칫 둠칫", icon: "💃", role: "자퇴호소인",
                 target: "신효진", realAngel: "최선혜", 
-                guess: "최선혜", correct: true, // ⭕ 정답
+                guess: "최선혜", correct: true, 
                 memo: "19일 파란 원피스 칭찬, 18일 귤/약과 투척 (날짜까지 기록)",
                 story: "나노 단위 기록 정신! 정답도 깔끔하게 맞추셨습니다."
             },
@@ -207,7 +209,7 @@
                 title: "로켓배송 산타 ⚡",
                 name: "신효진", nick: "원더", icon: "🚀", role: "X맨",
                 target: "박재상", realAngel: "홍은숙", 
-                guess: "홍은숙", correct: true, // ⭕ 정답
+                guess: "홍은숙", correct: true, 
                 memo: "오예 모두 완료! (12.22 비장한 표정으로 하이파이브 ✋)",
                 story: "시작하자마자 미션 올 클리어! 정체도 바로 맞춘 능력자."
             },
@@ -215,7 +217,7 @@
                 title: "비운의 짝사랑 💔",
                 name: "박재상", nick: "호머심슨", icon: "🍩", role: "전교회장",
                 target: "김수호", realAngel: "신효진", 
-                guess: "김수호", correct: false, // ❌ 오답
+                guess: "김수호", correct: false, 
                 memo: "Doh! (17일 점심 윙크 날리고 모른 척하기... 수호쌤 못 봄 ㅠ)",
                 story: "윙크까지 날렸는데... 본인이 챙겨주는 수호쌤을 천사로 착각!"
             },
@@ -223,7 +225,7 @@
                 title: "바보야... 😎",
                 name: "김수호", nick: "카리나", icon: "🎸", role: "얌체",
                 target: "곽민정", realAngel: "박재상", 
-                guess: "황혜조", correct: false, // ❌ 오답
+                guess: "황혜조", correct: false, 
                 memo: "상태메시지: '바보야' / 손가락 하트 완료",
                 story: "재상쌤의 윙크를 못 보고, 엉뚱한 혜조쌤을 의심한 당신은..."
             },
@@ -231,7 +233,7 @@
                 title: "탕수육의 외침 🥟",
                 name: "곽민정", nick: "2학년포애버", icon: "🥰", role: "깐부",
                 target: "성미옥", realAngel: "김수호", 
-                guess: "최경아", correct: false, // ❌ 오답
+                guess: "최경아", correct: false, 
                 memo: "12.23 탕수육 먹을 때 하이파이브 (제발 인정 좀 해주세요 ㅠ)",
                 story: "탕수육 먹을 때의 그 간절함! 하지만 천사는 바로 옆에 있었습니다."
             },
@@ -239,7 +241,7 @@
                 title: "은밀한 고수 🦄",
                 name: "성미옥", nick: "Gen Z, yen Z?", icon: "✨", role: "킬러문항",
                 target: "황혜조", realAngel: "곽민정", 
-                guess: "곽민정", correct: true, // ⭕ 정답
+                guess: "곽민정", correct: true, 
                 memo: "아직 미션을 완료하지 못하셨군요... (은밀하게 진행 중)",
                 story: "MZ세대 닉네임의 주인공! 조용히 정답을 맞춘 실력자."
             },
@@ -247,16 +249,16 @@
                 title: "메소드 연기상 🎬",
                 name: "황혜조", nick: "사슴코", icon: "🦌", role: "보안관",
                 target: "최경아", realAngel: "성미옥", 
-                guess: "박재상", correct: false, // ❌ 오답
-                memo: "마니또가 '제가요?'라고 해서 바로 말투 따라해봄 (소름)",
+                guess: "박재상", correct: false, 
+                memo: "마니또가 '제가요?'라고 해서 바로 말투 따라해봄 (메소드 연기)",
                 story: "단톡방 말투까지 복사하는 치밀함! 하지만 미옥쌤인 줄은 몰랐음."
             },
             {
                 title: "정의의 사도 👮‍♀️",
                 name: "최경아", nick: "메리", icon: "🔦", role: "생활지도부장",
                 target: "노은휘", realAngel: "황혜조", 
-                guess: "박재상", correct: false, // ❌ 오답
-                sheriffGuess: "김연욱", // X맨 검거 성공!
+                guess: "박재상", correct: false, 
+                sheriffGuess: "김연욱", 
                 memo: "덕분에 둠칫둠칫! / 18일 수수께끼 포스트잇 부착",
                 story: "마니또는 틀렸지만, X맨(김연욱)을 검거하여 학교를 구했습니다!"
             },
@@ -264,7 +266,7 @@
                 title: "달콤한 유혹 🍫",
                 name: "노은휘", nick: "넌나만바라봐", icon: "👀", role: "깐부",
                 target: "김연욱", realAngel: "최경아", 
-                guess: "최경아", correct: true, // ⭕ 정답
+                guess: "최경아", correct: true, 
                 memo: "19일 초콜릿 몰래 투척 / 걷는 걸음걸이 3초 따라하기",
                 story: "달콤한 간식과 함께 경아쌤을 정확히 맞춘 눈치 백단!"
             },
@@ -272,7 +274,7 @@
                 title: "상큼한 비타민 🌿",
                 name: "김연욱", nick: "마니또아님", icon: "💊", role: "X맨",
                 target: "최선혜", realAngel: "노은휘", 
-                guess: "노은휘", correct: true, // ⭕ 정답
+                guess: "노은휘", correct: true, 
                 memo: "안녕하세요 / 4. 비타민C, 홍삼스틱 전달 예정",
                 story: "정답은 맞췄지만... 최경아 보안관에게 꼬리를 잡혔습니다."
             }
@@ -458,18 +460,19 @@
             </div>
         `;
 
-        // [Page 17] 엔딩
+        // [Page 17] 엔딩 (새해 인사 Ver.)
         html += `
             <div class="slide">
-                <div style="font-size:5rem; margin-bottom:20px;">🎄❤️</div>
-                <h1 style="font-family:'Black Han Sans'; font-size:3rem; color:var(--accent-gold);">Merry Christmas</h1>
-                <h2 style="font-family:'Do Hyeon'; font-size:1.5rem; margin-top:20px; line-height:1.6; text-align:center;">
+                <div style="font-size:5rem; margin-bottom:20px;">🌅💖</div>
+                <h1 style="font-family:'Black Han Sans'; font-size:3.5rem; color:var(--accent-gold);">Happy New Year</h1>
+                <h2 style="font-family:'Do Hyeon'; font-size:1.6rem; margin-top:20px; line-height:1.6; text-align:center;">
                     서로를 생각하는 마음이<br>
                     가장 큰 선물이었습니다.<br>
-                    2025년 한 해, 정말 고생 많으셨습니다!
+                    2025년 마무리 잘 하시고,<br>
+                    새해 복 많이 받으세요!
                 </h2>
-                <div style="margin-top:40px; font-size:1rem; opacity:0.7;">
-                    2026년에도 우리 함께해요 ✨
+                <div style="margin-top:40px; font-size:1.1rem; opacity:0.8;">
+                    2026년에도 2학년부 파이팅! ✨
                 </div>
             </div>
         `;
